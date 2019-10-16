@@ -16,6 +16,7 @@ if [ "$mac" == "" ] ; then
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<title>ip and mac address lookup tool</title>
 <style>
 body { background: black ; color: white; white-space:pre; font-family:monospace; } 
 a { color: grey; }
@@ -34,18 +35,45 @@ function query() {
   xhttp.open("GET", "/mac/?"+q, true);
   xhttp.send();
 }
+
+function query_ip() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("result").innerHTML = this.responseText;
+     if (! this.responseText ) document.getElementById("result").innerHTML = "no result";
+    }
+  };
+  var q =  document.getElementById("ip").value;
+  xhttp.open("GET", "/ip/?"+q, true);
+  xhttp.send();
+}
 </script>
 </head>
 <body>
 
-<!--
-<form method="post" action="./">
-input mac address<textarea name=mac >00:11:22:33:44:55</textarea><input type=submit></input>
-</form>
---!>
+<input id=ip value='1.1.1.1'></input>
+
 <textarea id=mac onclick="document.getElementById('mac').value='';">00:11:22:33:44:55</textarea>
-<button onclick=query()>lookup mac address</button>
+<button id="btn" onclick=query()>lookup mac address</button>
 <div id=result></div>
+
+<script>
+// Get the input field
+var input = document.getElementById("ip");
+
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    //document.getElementById("btn").click();
+    query_ip();
+  }
+});
+</script>
 </body></html>
 
 EOF
