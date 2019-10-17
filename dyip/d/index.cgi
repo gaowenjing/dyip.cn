@@ -33,6 +33,7 @@ cat <<EOF
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<title>download</title>
 <style>
 body { background: black ; color: white; white-space:pre; font-family:monospace; } 
 a { color: grey; }
