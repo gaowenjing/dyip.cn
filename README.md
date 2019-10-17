@@ -1,2 +1,3 @@
 # https://dyip.cn
-# source.
+# source code hosted in my openwrt router.
+# cgi/shell/javascript
